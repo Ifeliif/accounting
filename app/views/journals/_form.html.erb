@@ -1,0 +1,26 @@
+<%= form_for @journal, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :ac_master_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ac_master_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :amount, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :amount, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :parent_journal_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :parent_journal_id, :class => 'text_field' %>
+    </div>
+  </div>
+
+  
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            journals_path, :class => 'btn btn-default' %>
+ 
+<% end %>

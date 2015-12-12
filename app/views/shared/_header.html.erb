@@ -1,0 +1,12 @@
+<div class="container">
+  <h2><img src="<%= @moe_src %>" />Accounting System</h2>
+  <p>会計システムからERPパッケージまで何でも開発しますよ！</p>                  
+  <ul class="nav nav-pills" role="tablist" >
+    <li><%= link_to "TOP", root_path, :class => 'active' %></li>
+    <li><%= link_to "勘定科目一覧", :ac_masters, :class => 'active' %></li>
+    <li><%= link_to "仕訳", :parent_journals, :class => 'active' %></li>
+    <li><%= link_to "試算表", trial_balance_index_path, :class => 'active' %></li>
+    <li><%= link_to "部門", :departments, :class => 'active' %></li>
+    <li><%= link_to "社員", :staffs, :class => 'active' %></li>
+  </ul>
+</div>

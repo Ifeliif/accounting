@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @category_master.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category_master.name %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @category_master.level %>
+</p>
+
+<p>
+  <strong>Upper code:</strong>
+  <%= @category_master.upper_code %>
+</p>
+
+<%= link_to 'Edit', edit_category_master_path(@category_master) %> |
+<%= link_to 'Back', category_masters_path %>

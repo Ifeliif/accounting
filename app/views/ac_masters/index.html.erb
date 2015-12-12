@@ -1,0 +1,52 @@
+<%- model_class = AcMaster -%>
+<div class="page-header">
+<h2>勘定科目一覧</h2>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>勘定科目コード</th>
+      <th>勘定科目名</th>
+      <th>借方・貸方区分</th>
+      <th>階層</th>
+      <th>上位科目コード</th>
+      <th>編集・削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ac_masters.each do |ac_master| %>
+      <tr>
+        <td><%= ac_master.code %></td>
+        <td><%= ac_master.name %></td>
+        <td><%= ac_master.cd_division %></td>
+        <td><%= ac_master.level %></td>
+        <td><%= ac_master.upper_code %></td>
+        <td>
+          <%= link_to t('編集', :default => t("helpers.links.edit")),
+                      edit_ac_master_path(ac_master), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('削除', :default => t("helpers.links.destroy")),
+                      ac_master_path(ac_master),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_ac_master_path,
+            :class => 'btn btn-primary' %>
+<p>
+<%= link_to "一括削除",delete_ac_masters_path,:class => 'btn btn-primary' %>
+</p>
+<p>
+  Download:
+  <%= link_to "CSV", ac_masters_path(format: "csv") %>  |
+  <%= link_to "Excel", ac_masters_path(format: "xls") %><br>
+  <%= form_tag import_ac_masters_path, multipart: true do %>
+  <%= file_field_tag :file %><br>
+  <%= submit_tag "インポート",:class => 'btn btn-primary' %>
+  <% end %>
+</p>

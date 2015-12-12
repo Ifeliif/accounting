@@ -1,0 +1,31 @@
+<h1>Listing category_masters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Level</th>
+      <th>Upper code</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @category_masters.each do |category_master| %>
+      <tr>
+        <td><%= category_master.code %></td>
+        <td><%= category_master.name %></td>
+        <td><%= category_master.level %></td>
+        <td><%= category_master.upper_code %></td>
+        <td><%= link_to 'Show', category_master %></td>
+        <td><%= link_to 'Edit', edit_category_master_path(category_master) %></td>
+        <td><%= link_to 'Destroy', category_master, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Category master', new_category_master_path %>

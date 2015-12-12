@@ -1,0 +1,37 @@
+<table class="table table-striped" id="accounting_table">
+<h2>試算表</h2>
+  <thead>  
+    <tr>
+      <th>勘定科目名</th>
+      <th>借方</th>
+      <th>貸方</th>
+  </thead>
+  <tbody>
+    <% @journals.each do |journal| %>
+    <tr>
+      <td><%= journal.name %></td>
+      <td><%= journal.d_amounts %></td>
+      <td><%= journal.c_amounts %></td>
+    </tr>      
+    <% end %>    
+  </tbody>
+</table>
+
+
+<script>
+
+var result1 = {};
+var result2 = {};
+
+$("#accounting_table tbody tr").each(function() {
+  $find = $(this).find("td");
+
+  if(!($find.eq(0).text() in result)) {
+    result1[$find.eq(0).text()] = 0;
+    result2[$find.eq(0).text()] = 0;
+  }
+  result1[$find.eq(0).text()] += parseInt($find.eq(1).text()); 
+  result2[$find.eq(0).text()] += parseInt($find.eq(2).text()); 
+});
+
+</script>

@@ -1,0 +1,52 @@
+<%= form_for @parent_journal, :html => { :class => 'form-horizontal' } do |f| %>
+<%= f.date_select :transaction_date, :use_short_month => true %><br>
+<table class="table">
+<thead>
+  <tr>
+    <th>借方</th>
+  </tr>
+  <tr>
+    <th>勘定科目</th>
+    <th>金額</th>
+  </tr>
+</thead>
+    <tbody class="bulk-registration-form">
+    <%= f.fields_for :journals do |jf| %>    
+    <tr>
+      <td><%= jf.collection_select :ac_master_id, @ac_masters, :id, :name %></td>  
+      <td><%= jf.text_field :amount %></td>
+        <%= jf.hidden_field :cd_division, :value => "1" %>
+    </tr>
+    <% end %>
+    </tbody>
+
+<thead>
+  <tr>
+    <th>貸方</th>
+  </tr>
+  <tr>
+    <th>勘定科目</th>
+    <th>金額</th>
+  </tr>
+</thead>
+    <tbody class="bulk-registration-form">
+    <%= f.fields_for :journals do |jf| %>    
+    <tr>
+      <td><%= jf.collection_select :ac_master_id, @ac_masters, :id, :name %></td>  
+      <td><%= jf.text_field :amount %></td>
+        <%= jf.hidden_field :cd_division, :value => "2" %>
+    </tr>
+    <% end %>
+    </tbody>
+
+</table>
+
+  
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            parent_journals_path, :class => 'btn btn-default' %>
+ 
+<% end %>
+<hr>
+<br><br>
+
