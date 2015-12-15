@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'general_ledger/index'
+  get 'general_ledger/search'
+
+
   resources :category_masters
 
   resources :custumer_prices
@@ -18,6 +22,7 @@ Rails.application.routes.draw do
   get 'top/about'
 
   get 'trial_balance/index'
+  get 'trial_balance/search'  
 
   resources :ac_masters do
     collection { post :import } 

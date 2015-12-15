@@ -71,6 +71,6 @@ class ParentJournalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parent_journal_params
-      params.require(:parent_journal).permit(:transaction_date, journals_attributes: [:id,:ac_master_id, :amount, :parent_journal_id,:cd_division])
+      params.require(:parent_journal).permit(:transaction_date,:detail, journals_attributes: [:id,:ac_master_id, :amount, :parent_journal_id,:cd_division,:detail])
     end  
 end

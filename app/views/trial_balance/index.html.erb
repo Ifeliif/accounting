@@ -1,5 +1,10 @@
 <table class="table table-striped" id="accounting_table">
 <h2>試算表</h2>
+<%= form_tag trial_balance_search_path, method: :get do %>
+  <p> <%= date_select 'dselect','', :use_month_numbers => true, :discard_day => true %>
+  <%= submit_tag "表示",:class => 'btn btn-primary' %></p>
+<% end %>
+
   <thead>  
     <tr>
       <th>勘定科目名</th>
@@ -18,20 +23,6 @@
 </table>
 
 
-<script>
 
-var result1 = {};
-var result2 = {};
 
-$("#accounting_table tbody tr").each(function() {
-  $find = $(this).find("td");
 
-  if(!($find.eq(0).text() in result)) {
-    result1[$find.eq(0).text()] = 0;
-    result2[$find.eq(0).text()] = 0;
-  }
-  result1[$find.eq(0).text()] += parseInt($find.eq(1).text()); 
-  result2[$find.eq(0).text()] += parseInt($find.eq(2).text()); 
-});
-
-</script>

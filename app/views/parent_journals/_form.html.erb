@@ -1,5 +1,7 @@
 <%= form_for @parent_journal, :html => { :class => 'form-horizontal' } do |f| %>
-<%= f.date_select :transaction_date, :use_short_month => true %><br>
+<%= f.date_select :transaction_date, :use_short_month => true %>  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            parent_journals_path, :class => 'btn btn-default' %><br>
 <table class="table">
 <thead>
   <tr>
@@ -7,13 +9,15 @@
   </tr>
   <tr>
     <th>勘定科目</th>
+    <th>補助科目</th>    
     <th>金額</th>
   </tr>
 </thead>
     <tbody class="bulk-registration-form">
     <%= f.fields_for :journals do |jf| %>    
     <tr>
-      <td><%= jf.collection_select :ac_master_id, @ac_masters, :id, :name %></td>  
+      <td><%= jf.collection_select :ac_master_id, @ac_masters, :id, :name %></td>
+      <td><%= jf.text_field :detail %></td>
       <td><%= jf.text_field :amount %></td>
         <%= jf.hidden_field :cd_division, :value => "1" %>
     </tr>
@@ -26,6 +30,7 @@
   </tr>
   <tr>
     <th>勘定科目</th>
+    <th>補助科目</th>     
     <th>金額</th>
   </tr>
 </thead>
@@ -33,6 +38,7 @@
     <%= f.fields_for :journals do |jf| %>    
     <tr>
       <td><%= jf.collection_select :ac_master_id, @ac_masters, :id, :name %></td>  
+      <td><%= jf.text_field :detail %></td>
       <td><%= jf.text_field :amount %></td>
         <%= jf.hidden_field :cd_division, :value => "2" %>
     </tr>
@@ -40,12 +46,8 @@
     </tbody>
 
 </table>
-
-  
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            parent_journals_path, :class => 'btn btn-default' %>
- 
+備考欄<br>
+<%= f.text_area :detail, rows: 2, cols: 45 %> 
 <% end %>
 <hr>
 <br><br>

@@ -11,20 +11,30 @@
       <th>取引日</th>
       <th>勘定科目</th>
       <th>金額</th>
-      <th>借方・貸方区分</th>
+      <th align="center">借方・貸方区分</th>
+      <th>備考欄</th>
     </tr>
   </thead>
   <tbody>
     <% @parent_journals.each do |parent_journal| %>
         <% parent_journal.journals.each do |journal| %>
             <tr>
+              <% if parent_journal.journals.find_index(journal) == 0 %>
               <td><%= parent_journal.transaction_date %></td>
-              <td><%= journal.ac_master.name %></td>
+              <% else %>
+              <td></td>
+              <% end %>
+              <td><%= journal.ac_master.name %><br>&nbsp;&nbsp;<%= journal.detail %></td>
               <td><%= journal.amount %></td>
-              <td><%= journal.cd_division %></td>
+              <td align="center"><%= journal.cd_division %></td>
+              <% if parent_journal.journals.find_index(journal) == 0 %>
+              <td><%= parent_journal.detail %></td>
+              <% else %>
+              <td></td>
+              <% end %>
             </tr>
         <%end%>     
-        <td colspan="4">
+        <td colspan="5">
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_parent_journal_path(parent_journal), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

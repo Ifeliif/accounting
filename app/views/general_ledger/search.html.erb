@@ -1,0 +1,48 @@
+<%= form_tag general_ledger_search_path, method: :get do %>
+  <p> <%= date_select 'dselect','', :use_month_numbers => true, :discard_day => true %>
+  <%= collection_select('ac', 'select', AcMaster.find_by_sql(['select * from ac_masters where substr(code, 7,2) <> ?','00']), :id, :name) %>
+  <%= submit_tag "表示", :class => 'btn btn-primary' %></p>
+<% end %>
+
+<h2>総勘定元帳</h2><br>
+借方<br>
+<table class="table table-striped" id="accounting_table">
+  <thead>  
+    <tr>
+      <th>取引日</th>
+      <th>勘定科目名</th>
+      <th>金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @c_journals.each do |journal| %>
+    <tr>
+      <td><%= journal.transaction_date %></td>
+      <td><%= journal.name %></td>
+      <td><%= journal.amount %></td>
+    </tr>      
+    <% end %>    
+  </tbody>
+</table>
+<br>
+貸方
+<br>
+<table class="table table-striped" id="accounting_table">
+  <thead>  
+    <tr>
+      <th>取引日</th>
+      <th>勘定科目名</th>
+      <th>金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @d_journals.each do |journal| %>
+    <tr>
+      <td><%= journal.transaction_date %></td>
+      <td><%= journal.name %></td>
+      <td><%= journal.amount %></td>
+    </tr>      
+    <% end %>          
+  </tbody>
+
+</table>

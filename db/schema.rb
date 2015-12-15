@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20151212082048) do
     t.string   "amount"
     t.string   "parent_journal_id"
     t.integer  "cd_division"
+    t.string   "detail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

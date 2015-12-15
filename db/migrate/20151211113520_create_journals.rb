@@ -5,6 +5,7 @@ class CreateJournals < ActiveRecord::Migration
       t.string :amount
       t.string :parent_journal_id
       t.integer :cd_division
+      t.string :detail
 
       t.timestamps
     end
